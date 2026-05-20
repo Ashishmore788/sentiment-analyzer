@@ -31,10 +31,9 @@ def get_pipeline():
         )
     return _pipeline
 
-def get_whisper():
-    global _whisper
-    if _whisper is None:
-        import whisper
+@app.post("/analyze/voice")
+async def analyze_voice(file: UploadFile = File(...)):
+    raise HTTPException(status_code=503, detail="Voice analysis not available in cloud deployment. Run locally for voice support.")
         _whisper = whisper.load_model("base")
     return _whisper
 
