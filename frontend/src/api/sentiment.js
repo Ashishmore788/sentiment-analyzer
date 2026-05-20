@@ -29,3 +29,21 @@ export async function analyzeTwitter(username, tweet_count = 5) {
   if (!res.ok) throw new Error((await res.json()).detail || "Failed");
   return res.json();
 }
+
+export async function analyzeVoice(blob) {
+  const form = new FormData();
+  form.append("file", blob, "recording.webm");
+  const res = await fetch(`${BASE}/analyze/voice`, { method: "POST", body: form });
+  if (!res.ok) throw new Error((await res.json()).detail || "Failed");
+  return res.json();
+}
+
+export async function analyzeBatch(texts) {
+  const res = await fetch(`${BASE}/analyze/batch`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ texts }),
+  });
+  if (!res.ok) throw new Error((await res.json()).detail || "Failed");
+  return res.json();
+}
