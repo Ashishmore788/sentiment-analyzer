@@ -1,4 +1,4 @@
-const BASE = "http://localhost:8000";
+const BASE = "https://sentiment-analyzer-04i6.onrender.com";
 
 export async function analyzeText(text) {
   const res = await fetch(`${BASE}/analyze/text`, {
@@ -34,7 +34,7 @@ export async function analyzeVoice(blob) {
   const form = new FormData();
   form.append("file", blob, "recording.webm");
   const res = await fetch(`${BASE}/analyze/voice`, { method: "POST", body: form });
-  if (!res.ok) throw new Error((await res.json()).detail || "Failed");
+  if (!res.ok) throw new Error((await res.json()).detail || "Voice not available in cloud");
   return res.json();
 }
 
