@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { analyzeText, analyzeUrl, analyzeTwitter, analyzeVoice, analyzeBatch } from "./api/sentiment";
 import { useVoiceRecorder } from "./hooks/useVoiceRecorder";
 import ResultCard from "./components/ResultCard";
